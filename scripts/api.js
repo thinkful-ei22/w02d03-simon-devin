@@ -5,9 +5,9 @@ const api = (function(){
   
   const getItems = function(callback){
     $.getJSON(`${BASE_URL}/items`, callback);
-    
   };
 
+  
   const createItem = function(name, callback){
     const newItem = JSON.stringify({
       name
@@ -33,10 +33,21 @@ const api = (function(){
     });
   };
 
+  const deleteItem = function(id, callback){
+    $.ajax({
+      url: `${BASE_URL}/items/${id}`,
+      method: 'DELETE',
+      contentType: 'application/json',
+      success: callback
+    });
+  };
+
+
   return {
     getItems,
     createItem,
-    updateItem
+    updateItem,
+    deleteItem
   };
 
 })();
