@@ -65,6 +65,8 @@ const shoppingList = (function(){
       api.createItem(newItemName, function(newItem) {
         store.addItem(newItem);
         render();
+      },function(response){
+        console.log('Create item failed: ', response.responseJSON.message);
       });
     });
   }
@@ -84,6 +86,8 @@ const shoppingList = (function(){
       api.updateItem(id, newData, function(response){
         store.findAndUpdate(id, newData);
         render();
+      }, function(response){
+        console.log('Update Check Status failed: ', response.responseJSON.message);
       });
       
     });
@@ -98,6 +102,8 @@ const shoppingList = (function(){
       api.deleteItem(id, function(response){
         store.findAndDelete(id);
         render();
+      }, function(response){
+        console.log('Delete Item failed: ', response.responseJSON.message);
       });
     });
   }
@@ -110,6 +116,8 @@ const shoppingList = (function(){
       api.updateItem(id, {name: itemName}, function(response){
         store.findAndUpdate(id, {name:itemName});
         render();
+      }, function(response){
+        console.log('Update Name failed: ', response.responseJSON.message);
       });
     });
   }
