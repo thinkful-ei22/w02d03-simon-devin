@@ -29,8 +29,3 @@ const api = (function(){
 
 })();
 
-api.createItem('pears', (newItem) => {
-  api.getItems((items) => {
-    console.log(items);
-  });
-});
