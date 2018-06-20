@@ -33,10 +33,15 @@ const store = (function(){
     this.searchTerm = term;
   };
 
+  const setErrorMsg = function(msg){
+    this.errorMsg = msg;
+  };
+
   return {
     items: [],
     hideCheckedItems: false,
     searchTerm: '',
+    errorMsg: '',
 
     addItem,
     findById,
@@ -44,6 +49,7 @@ const store = (function(){
     findAndUpdate,
     toggleCheckedFilter,
     setSearchTerm,
+    setErrorMsg,
   };
   
 }());

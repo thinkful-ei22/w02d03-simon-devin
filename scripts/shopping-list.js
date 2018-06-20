@@ -54,6 +54,12 @@ const shoppingList = (function(){
   
     // insert that HTML into the DOM
     $('.js-shopping-list').html(shoppingListItemsString);
+
+    // insert error HTML if error message exists
+    if(store.errorMsg){
+      $('.error-box').html(`Database failure: ${store.errorMsg}`);
+    }
+    
   }
   
   
@@ -66,7 +72,8 @@ const shoppingList = (function(){
         store.addItem(newItem);
         render();
       },function(response){
-        console.log('Create item failed: ', response.responseJSON.message);
+        store.setErrorMsg(response.responseJSON.message);
+        render();
       });
     });
   }
@@ -103,7 +110,8 @@ const shoppingList = (function(){
         store.findAndDelete(id);
         render();
       }, function(response){
-        console.log('Delete Item failed: ', response.responseJSON.message);
+        store.setErrorMsg(response.responseJSON.message);
+        render();
       });
     });
   }
