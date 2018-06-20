@@ -5,7 +5,7 @@ const api = (function(){
   
   const getItems = function(callback){
     $.getJSON(`${BASE_URL}/items`, callback);
-    callback('api module works!');
+    
   };
 
   const createItem = function(name, callback){
@@ -23,6 +23,7 @@ const api = (function(){
   };
 
   const updateItem = function(id, updateData, callback) {
+    console.log('in updateItem, parsing id:', id);
     $.ajax({
       url: `${BASE_URL}/items/${id}`,
       method: 'PATCH',
