@@ -8,8 +8,29 @@ const api = (function(){
     callback('api module works!');
   };
 
+  const createItem = function(name, callback){
+    const newItem = JSON.stringify({
+      name
+    });
+
+    $.ajax({
+      url: `${BASE_URL}/items`,
+      method: 'POST',
+      contentType: 'application/json',
+      data: newItem,
+      success: callback
+    });
+  };
+
   return {
-    getItems
+    getItems,
+    createItem
   };
 
 })();
+
+api.createItem('pears', (newItem) => {
+  api.getItems((items) => {
+    console.log(items);
+  });
+});
